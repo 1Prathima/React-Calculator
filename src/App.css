@@ -1,7 +1,88 @@
-body{
-    font-family: sans-serif, inter;
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Ruda:wght@400;500;600;700&display=swap');
+
+.App{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline: auto;
 }
 
-input, button{
-    margin: 10px;
+.calculator{
+    width: 489px;
+    height: 521px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+    margin-inline: auto;
+    border-radius: 30px;
+    background: #fff;
+    box-shadow: -30px 20px 100px 10px #FB184E78, 30px -20px 100px 10px #0057FF78;
+    padding: 40px 80px;
+    box-sizing: border-box;
+}
+
+.calculator > h1{
+    color: #2b2b2b;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: normal;
+}
+
+input{
+    border: 1px solid #2b2b2b;
+    height: 50px;
+    color: #2b2b2b;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: normal;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+::placeholder{
+    color: #2b2b2b;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+button{
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    background-color: #2b2b2b;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: normal;
+    border: none;
+    cursor: pointer;
+}
+
+.success{
+    color: green;
+    text-align: center;
+    font-size: 24px;
+}
+.error{
+    color: red;
+    text-align: center;
+    font-size: 24px;
+}
+
+.result{
+    text-align: center;
+    font-size: 24px;
 }

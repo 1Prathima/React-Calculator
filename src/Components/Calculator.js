@@ -1,69 +1,67 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 const Calculator = () => {
-    let [inputValue1, setInputValue1] = useState("");
-    let [inputValue2, setInputValue2] = useState("");
-    let [result, setResult] = useState("");
-    let [message, setMessage] = useState("");
+    const [input1, setInput1] = useState("");
+    const [input2, setInput2] = useState("");
+    const [message, setMessage] = useState("");
+    const [result, setResult] = useState("");
 
-
-    const performCalculation = (e) => {
-        if(inputValue1==""){
-            setMessage("Num 1 cannot be empty");
+    function validateInput(){
+        if(input1==="" || input2==="" || isNaN(input1) || isNaN(input2)){
+            setMessage("Please enter valid numbers.");
             setResult("");
-            return;
+            return false;
         }
-        else if(inputValue2==""){
-            setMessage("Num 2 cannot be empty");
-            setResult("");
-            return;
-        }
-        
-            const num1 = Number(inputValue1);
-            const num2 = Number(inputValue2);
-            let calculatedResult = "";
+        setMessage(null);
+        return true;
+    }
 
-            if(Number.isNaN(num1) || Number.isNaN(num2)){
-                setMessage("Enter valid numbers");
+    function add(){
+        if(validateInput()){
+            setResult(parseFloat(input1) + parseFloat(input2));
+            setMessage("Success!");
+        }
+    }
+    function subtract(){
+        if(validateInput()){
+            setResult(parseFloat(input1) - parseFloat(input2));
+            setMessage("Success!");
+        }
+    }
+    function multiply(){
+        if(validateInput()){
+            setResult(parseFloat(input1) * parseFloat(input2));
+            setMessage("Success!");
+        }
+    }
+    function divide(){
+        if(validateInput()){
+            if(input2!="0"){
+                setResult(parseFloat(input1) / parseFloat(input2));
+                setMessage("Success!");
             }
             else{
-            switch (e.target.innerText) {
-                case '+':
-                    calculatedResult = (num1 + num2);
-                    break;
-                case '-':
-                    calculatedResult = (num1 - num2);
-                    break;
-                case '*':
-                    calculatedResult = (num1 * num2);
-                    break;
-                case '/':
-                    calculatedResult = (num1 / num2);
-                    break;
+                setMessage("Division by zero is not allowed.");
+                setResult("");
             }
-            setResult(calculatedResult);
-            setMessage("Success!");
-            }      
+        }
     }
 
     return(
-        <div>
-            <h2>React Calculator</h2>
-            <input type="text" placeholder="Num1" onChange={(e)=>setInputValue1(e.target.value)}></input>
-            <br></br>
-            <input type="text" placeholder="Num2" onChange={(e)=>setInputValue2(e.target.value)}></input>
-            <br></br>
-            <button onClick={performCalculation}>+</button>
-            <button onClick={performCalculation}>-</button>
-            <button onClick={performCalculation}>*</button>
-            <button onClick={performCalculation}>/</button>
-
-
-        <div className={message.includes("Success!") ? "success" : "error"}>{message}</div>
-        <div className='res'>{result === "" ? "" : <h3> Result : {result}</h3> }</div>
+        <div className="calculator">
+            <h1>React Calculator</h1>
+            <input type="text" placeholder="Num 1" value={input1} onChange={(e)=>setInput1(e.target.value)}></input>
+            <input type="text" placeholder="Num 2" value={input2} onChange={(e)=>setInput2(e.target.value)}></input>
+            <div className="buttons">
+                <button onClick={add}>+</button>
+                <button onClick={subtract}>-</button>
+                <button onClick={multiply}>*</button>
+                <button onClick={divide}>/</button>
+            </div>
+            <div className={message.includes("Success!") ? "success" : "error"}>{message}</div>
+            <div className="result">{result === "" ? "" :  `Result : ${result}` }</div>
         </div>
     )
-
 }
 
 export default Calculator;
